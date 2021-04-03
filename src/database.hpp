@@ -123,7 +123,6 @@ class DataBaseSvr
 
         bool QueryOneStuInfo(std::string user_id, Json::Value* result)
         {
-            cout<<"11"<<endl;
             mysql_query(&mysql_, "set names utf8");
             //1.组织查询的sql语句
             char sql[1024] = {0};
@@ -167,7 +166,8 @@ class DataBaseSvr
             (*result)["stu_interview_techer"] = JUDGEVALUE(row[15]);
             (*result)["stu_techer_suggest"] = JUDGEVALUE(row[16]);
             (*result)["stu_interview_time"] = JUDGEVALUE(row[9]);
-
+            
+            cout<<"QueryOneStuInfo end"<<endl;
             mysql_free_result(res);
             return true;
         }
