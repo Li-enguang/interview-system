@@ -36,7 +36,7 @@ class Session
             MD5_CTX ctx;
             MD5_Init(&ctx);
             //2.计算MD5值
-            LOG(INFO, origin_str_) << std::endl;
+            //LOG(INFO, origin_str_) << std::endl;
             int ret = MD5_Update(&ctx, origin_str_.c_str(), origin_str_.size());
             if(ret != 1)
             {
@@ -51,7 +51,7 @@ class Session
                 LOG(ERROR, "MD5_Final failed") << std::endl;
                 return false;
             }
-            LOG(INFO, "md5 : ")  << md5 << std::endl;
+            //LOG(INFO, "md5 : ")  << md5 << std::endl;
             
             //32位的字符串就是计算出来的sessionid
             char tmp[2] = {0};
@@ -62,7 +62,7 @@ class Session
                 strncat(buf, tmp, 2);
             }
 
-            LOG(INFO, buf) << std::endl;
+            //LOG(INFO, buf) << std::endl;
             session_id_ = buf;
             return true;
         }
