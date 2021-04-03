@@ -178,7 +178,8 @@ class AisSvr
                     tmp += sessionid;
 
                     Json::FastWriter writer;
-                    resp.body = writer.write(response_json);
+                    resp.set_content(writer.write(response_json),"application/json");
+                    //resp.body = writer.write(response_json);
 
                     //将session放到cookie当中返回给浏览器
                     resp.set_header("Set-Cookie", tmp.c_str());
@@ -199,20 +200,21 @@ class AisSvr
                     //return;
                     }*/
                     cout<<"开始查询"<<endl;
+                    sleep(1);
                     //2.在去查询数据库，获取用户的信息
                     cout<<sess.user_info_["stu_id"];
                     Json::Value response_json;
                     ret = db_->QueryOneStuInfo(sess.user_info_["stu_id"].asString(), &response_json);
-                    cout<<"zhixing";
-                    if(!ret)
+                    /*if(!ret)
                     {
                     return;
-                    }
+                    }*/
                     cout<<"查询成功"<<endl;
 
                     //3.组织应答
                     Json::FastWriter writer;
-                    resp.body = writer.write(response_json);
+                    //resp.body = writer.write(response_json);
+                    resp.set_content(writer.write(response_json),"application/json");
                     resp.set_header("Content-Type", "application/json");
             });
 
@@ -248,7 +250,8 @@ class AisSvr
                     }
                     //5.组织应答
                     Json::FastWriter writer;
-                    resp.body = writer.write(response_json);
+                    //resp.body = writer.write(response_json);
+                    resp.set_content(writer.write(response_json),"application/json");
                     resp.set_header("Content-Type", "application/json");
             });
 
