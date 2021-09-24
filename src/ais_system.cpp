@@ -52,7 +52,7 @@ class AisSvr
                 LOG(ERROR, "create database failed") << std::endl;
                 return -2;
             }
-
+	
             if(!db_->Connect2Mysql())
             {
                 LOG(ERROR, "connect database failed") << std::endl;
